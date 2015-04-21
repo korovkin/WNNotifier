@@ -8,9 +8,9 @@
     "enumerate" : true,
     "listener-ref" : "strong",
     "event-blocks" : true,
-    "event-processor-block" : true
+    "event-processor-block" : true,
     "listener-context-keyword" : "userContext",
-    "listener-context-ref" : "strong",
+    "listener-context-ref" : "strong"
   });
 
 -(void)a:(NSString *)a;
