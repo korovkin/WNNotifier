@@ -1,8 +1,8 @@
 #!/usr/bin/python
+import parcon
 
 import json
 import time
-import parcon
 import operator
 import pprint
 import os
