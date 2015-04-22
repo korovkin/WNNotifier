@@ -22,7 +22,7 @@ Strongly Typed ObjC Notifications
 
 ## Generate code for your notifier:
 
-```
+``` bash
 notifier/gen_notifier.py test/Protocol002.h
 0.0036, PRNT,  generating test/Protocol002.h
 0.0086, PRNT,  writing, test/Protocol002Notifier.h
@@ -30,7 +30,7 @@ notifier/gen_notifier.py test/Protocol002.h
 ```
 
 ## Listeners
-```
+``` ObjectiveC
 // listener:
 @interface TestListener : NSObject <Protocol002>
 @end
@@ -43,13 +43,13 @@ TestListener* listener = [TestListener new];
 
 ## Notifier: 
 
-```
+``` ObjectiveC
 Protocol002Notifier* notifier = [[Protocol002Notifier alloc] init];
 [notifier addSubscription:[[Protocol002NotifierSubcription alloc] initWithListener:listener]];
 ```
 
 ## Issue a strongly typed notification to all listeners:
-```
+``` ObjectiveC
 [notifier ping:@"hello"];
 ```
 
