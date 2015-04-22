@@ -1,6 +1,7 @@
-// @generated SignedSource<<6e11fc929332c22e829c5074c6576d54>>
+// @generated SignedSource<<0be85a0e4b135aa78a811330e4ecceee>>
+
 // signed with: https://github.com/korovkin/WNNotifier/notifier/sign.py
-// @tool gen_notifier.py:0x4:471bcf800d560f9d899fa0afe9738f4e
+// @tool gen_notifier.py:0x4:293e46c30415394be7d0a542d3f14a22
 // @input_hash Protocol001.h:2e7ebcd4171777918fff108fee802f9c
 
 #import <Foundation/Foundation.h>

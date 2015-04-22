@@ -62,6 +62,14 @@ notifier_initializer_implementation_event_blocks_template = """
   }
   return self;
 }
+
+- (instancetype)init
+{
+  NSAssert(NO,
+        @"ERROR: please use: initWithFirstSubscriptionAdded:lastSubscriptionRemoved: to init this object");
+
+  return nil;
+}
 """.strip()
 
 ####

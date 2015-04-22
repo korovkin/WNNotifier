@@ -121,7 +121,6 @@ bool WNNotifierBaseNotify(
   dispatch_queue_t listenerQueue,
   WNNotifierBaseNotificationBlock notificationBlock)
 {
-  NSLog(@"WNNotifierBaseNotify!");
   if (listener) {
     if (listenerQueue) {
       dispatch_async(listenerQueue, ^{

@@ -1,6 +1,7 @@
-// @generated SignedSource<<9fcde047595929d6f844c3314632fccc>>
+// @generated SignedSource<<b9aca7fee349d8a6015ec6b85b2c2929>>
+
 // signed with: https://github.com/korovkin/WNNotifier/notifier/sign.py
-// @tool gen_notifier.py:0x4:471bcf800d560f9d899fa0afe9738f4e
+// @tool gen_notifier.py:0x4:293e46c30415394be7d0a542d3f14a22
 // @input_hash Protocol001.h:2e7ebcd4171777918fff108fee802f9c
 
 #if  ! __has_feature(objc_arc)
@@ -49,6 +50,14 @@
                                                       lastSubscriptionBlock:removedLast];
   }
   return self;
+}
+
+- (instancetype)init
+{
+  NSAssert(NO,
+        @"ERROR: please use: initWithFirstSubscriptionAdded:lastSubscriptionRemoved: to init this object");
+
+  return nil;
 }
 
  -(void)addSubscription:(Protocol001NotifierSubcription *)subscription

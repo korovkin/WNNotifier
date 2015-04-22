@@ -1,9 +1,12 @@
-#import "Protocol001.h"
-#import "Protocol001Notifier.h"
+#import <Foundation/Foundation.h>
+
+#import "Protocol002.h"
+#import "Protocol002Notifier.h"
   
 #define LOG_LINE() NSLog(@"calling, %s", __FUNCTION__);
 
-@interface TestListener : NSObject <Protocol001>
+@interface TestListener : NSObject <Protocol002>
+  @property (atomic) NSString* msg;
 @end
 
 @implementation TestListener
@@ -15,49 +18,11 @@
   return self;
 }
 
--(void)a:(NSString *)a 
+-(void)ping:(NSString*)message
 {
   LOG_LINE();
-}
-
--(void)b:(NSNumber *)b
-{
-  LOG_LINE();
-}
-
--(void)c:(NSString *)c userContext:(id)userContext
-{
-  LOG_LINE();
-}
-
--(void)d:(NSNumber *)n userContext:(id)userContext
-{
-  LOG_LINE();
-}
-
--(void)e:(unsigned int)e
-{
-  LOG_LINE();
-}
-
--(void)f:(float)f
-{
-  LOG_LINE();
-}
-
--(void)g:(double)g
-{
-  LOG_LINE();
-}
-
--(void)h:(double)h hh:(short)hh hhh:(float)hhh
-{
-  LOG_LINE();
-}
-
--(void)i
-{
-  LOG_LINE();
+  NSLog(@"message, %@", message);
+  self.msg = [message copy];
 }
 
 - (void) dealloc
@@ -71,25 +36,30 @@ int main(int argc, char** argv)
   NSLog(@"hello");
   NSLog(@"-----");
 
-  Protocol001Notifier* notifier = [[Protocol001Notifier alloc] 
-    initWithFirstSubscriptionAdded:nil
-    lastSubscriptionRemoved:nil];
-  notifier = [[Protocol001Notifier alloc] init];
+  NSMutableArray* listeners = [NSMutableArray new];
+
+  Protocol002Notifier* notifier = [[Protocol002Notifier alloc] 
+                            initWithFirstSubscriptionAdded:nil
+                            lastSubscriptionRemoved:nil];
 
   for (int i = 0; i < 4; ++i) {
     TestListener* listener = [TestListener new];
-
-    Protocol001NotifierSubcription* subscription = 
-     [[Protocol001NotifierSubcription alloc] initWithListener:listener
-                  listenerQueue:nil
-                  listenerContext:nil];
+    listener.msg = @"x";
+    Protocol002NotifierSubcription* subscription = 
+     [[Protocol002NotifierSubcription alloc] initWithListener:listener listenerQueue:nil];
     [notifier addSubscription:subscription];
+    [listeners addObject:listener];
   }
 
-  [notifier a:@""];
-  [notifier a:@""];
+  [notifier ping:@"hello"];
+  [notifier ping:@"hello"];
+
+  for (TestListener* l in listeners) {
+    assert(YES == [l.msg isEqualToString:@"hello"]);
+  }
+
+  NSAssert(0, @"");
 
 
-  
   return EXIT_SUCCESS;
 }

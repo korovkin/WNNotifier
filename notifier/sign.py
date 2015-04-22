@@ -36,6 +36,7 @@ SIGNATURE_TOKEN = '<<SignedSource::*O*zOeWoEQle#+L!plEphiEmie@IsG>>'
 
 #### a signature header (prefixed to the signed file):
 header_template = """// @generated %s
+
 // signed with: https://github.com/korovkin/WNNotifier/notifier/sign.py
 """
 
