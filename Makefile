@@ -7,7 +7,7 @@ SRC = \
 
 COMPILE = clang++ -DNS_BLOCK_ASSERTIONS=1 -g -x objective-c++ -arch x86_64 -fobjc-arc -I . -framework Foundation
 
-all: gen compile
+all: gen compile test
 
 gen:
 	notifier/gen_notifier.py test/Protocol001.h
@@ -18,3 +18,8 @@ compile:
 
 clean: 
 	rm -rfv test/runTests.dSYM test/runTests
+
+.phony:
+
+test: .phony
+	test/runTests

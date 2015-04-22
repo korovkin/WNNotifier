@@ -21,7 +21,6 @@
 -(void)ping:(NSString*)message
 {
   LOG_LINE();
-  NSLog(@"message, %@", message);
   self.msg = [message copy];
 }
 
@@ -33,6 +32,7 @@
 
 int main(int argc, char** argv) 
 {
+  NSLog(@"-----");
   NSLog(@"hello");
   NSLog(@"-----");
 
@@ -55,11 +55,12 @@ int main(int argc, char** argv)
   [notifier ping:@"hello"];
 
   for (TestListener* l in listeners) {
-    assert(YES == [l.msg isEqualToString:@"hello"]);
+    NSAssert([l.msg isEqualToString:@"hello"], @"message lost");
   }
 
-  NSAssert(0, @"");
-
+  NSLog(@"------");
+  NSLog(@"all ok");
+  NSLog(@"------");
 
   return EXIT_SUCCESS;
 }
