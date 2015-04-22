@@ -5,7 +5,7 @@ SRC = \
 			WNNotifier/WNNotifierBase.mm \
 			test/main.mm
 
-COMPILE = clang++ -DNS_BLOCK_ASSERTIONS=1 -g -x objective-c++ -arch x86_64 -fobjc-arc -I . -framework Foundation
+COMPILE = clang++ -DNS_BLOCK_ASSERTIONS=1 -g -O2 -x objective-c++ -arch x86_64 -fobjc-arc -I . -framework Foundation
 
 all: gen compile test
 
@@ -14,7 +14,7 @@ gen:
 	notifier/gen_notifier.py test/Protocol002.h
 
 compile:
-	 $(COMPILE) $(SRC) -o test/runTests
+	$(COMPILE) $(SRC) -o test/runTests
 
 clean: 
 	rm -rfv test/runTests.dSYM test/runTests

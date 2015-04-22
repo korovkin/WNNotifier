@@ -1,8 +1,8 @@
-// @generated SignedSource<<c6d1788af7c30f0d0b551c064d5d3e1b>>
+// @generated SignedSource<<f4866862d8cee6115f42534db4dc8baf>>
 
 // signed with: https://github.com/korovkin/WNNotifier/notifier/sign.py
 // @tool gen_notifier.py:0x4:293e46c30415394be7d0a542d3f14a22
-// @input_hash Protocol002.h:ac9bf5e29a7f1b1e707f64c030ef1e65
+// @input_hash Protocol002.h:32600966df58ccdacd53753b89df0880
 
 #if  ! __has_feature(objc_arc)
 #error This file must be compiled with ARC. Use -fobjc-arc flag (or convert project to ARC).
@@ -92,6 +92,24 @@
               subscription.listenerQueue,
               ^(id<Protocol002> listener) {
                 [listener ping:message];
+              });
+  }];
+}
+
+- (void)printMessage:(NSString *)message line:(int)line
+{
+  if (_eventProcessor) {
+    _eventProcessor(_cmd,
+      @{@"printMessage" : WNNotifierBaseConvertToNSNull((message)),
+      @"line" : WNNotifierBaseConvertToNSNull(@(line)),
+    });
+  }
+  [_baseImplementation enumerateSubscriptionsUsingBlock:^(Protocol002NotifierSubcription * subscription) {
+    return WNNotifierBaseNotify(
+              subscription.listener,
+              subscription.listenerQueue,
+              ^(id<Protocol002> listener) {
+                [listener printMessage:message line:line];
               });
   }];
 }

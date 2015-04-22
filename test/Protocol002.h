@@ -11,4 +11,5 @@
   });
 
 -(void)ping:(NSString *)message;
+-(void)printMessage:(NSString *)message line:(int)line;
 @end
