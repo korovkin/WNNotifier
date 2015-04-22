@@ -235,7 +235,6 @@ COMMENTS = (COMMENT_MULTI_LINE | COMMENT_LINE)
 #########################################################################
 
 def WNNotifierGenerate_toDict(x):
-  print "haimg: " + str(x)
   d = {}
   d[KEY_ID] = x[0]
   d["string"] = x[1]
@@ -652,7 +651,7 @@ def write_source_file(filename, text, is_sign=True):
   text = remove_trailing_white_space(text)
   # sign the source file, in case it was requested:
   if is_sign:
-    text = parse_simple_objc_sign.sign(text)[0]
+    text = sign.sign(None, text)[0]
   log("writing, %s" % filename)
   open(filename, "w").write(text)
 

@@ -43,16 +43,12 @@ header_template = """// @generated %s
 def sign(options, data):
   """
     sign the given, yield a signature that can be verified by phabricator and lint
-    Unfortunately the signature algorithm that i need to support here is driven by: Tools/signedsource.py
-    which replaces the followin string in the input file:
+    Replaces the followin string in the input file:
       // @generated <<SignedSource::*O*zOeWoEQle#+L!plEphiEmie@IsG>>
-    with:
+    With:
       // @generated SignedSource<<md5 of the whole file including the previous line>>
-
-    a much better way of doing this is to add the signature, and do not include it in the 'signed' data
   """
   data_to_sign = (header_template % SIGNATURE_TOKEN) + data
-
   signature = sign_data(data_to_sign)
   signature = "SignedSource<<%s>>" % signature
   signed_data = (header_template % signature) + data
