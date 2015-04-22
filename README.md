@@ -1,9 +1,13 @@
 # WNNotifier
+
 Strongly Typed ObjC Notifications
 (code generator)
 
+
 # Example
-1. define a protocol:
+
+## Define a strongly typed protocol:
+
 ``` ObjectiveC
 @protocol Protocol002 <NSObject>
   WNNotifierGenerate({
@@ -15,14 +19,17 @@ Strongly Typed ObjC Notifications
   -(void)ping:(NSString *)message;
 @end
 ```
-2. code generate a notifier:
+
+## Generate code for your notifier:
+
 ```
 notifier/gen_notifier.py test/Protocol002.h
 0.0036, PRNT,  generating test/Protocol002.h
 0.0086, PRNT,  writing, test/Protocol002Notifier.h
 0.0091, PRNT,  writing, test/Protocol002Notifier.mm
 ```
-3. listeners:
+
+## Listeners
 ```
 // listener:
 @interface TestListener : NSObject <Protocol002>
@@ -33,14 +40,16 @@ notifier/gen_notifier.py test/Protocol002.h
 @end
 TestListener* listener = [TestListener new];
 ```
-4. notifier:
+
+## Notifier: 
+
 ```
 Protocol002Notifier* notifier = [[Protocol002Notifier alloc] init];
 [notifier addSubscription:[[Protocol002NotifierSubcription alloc] initWithListener:listener]];
 ```
-5. issue a strongly typed notification to all listeners:
+
+## Issue a strongly typed notification to all listeners:
 ```
- [notifier ping:@"hello"];
+[notifier ping:@"hello"];
 ```
 
-# Enjoy.
